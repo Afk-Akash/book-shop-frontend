@@ -1,13 +1,11 @@
-import './App.css';
-import all_books from './Data/all_books';
-import DisplayBook from './Component/DisplayBook';
+import "./App.css";
+import all_books from "./Data/all_books";
+import DisplayBook from "./Component/DisplayBook";
 
 function App() {
-
   return (
     <div className="App">
-      <div>Hello</div>
-      <DisplayBook all_books = {all_books} />
+      <DisplayBook all_books={all_books} />
     </div>
   );
 }
