@@ -4,10 +4,9 @@ import DisplayBook from './Component/DisplayBook';
 
 function App() {
 
-  
-
   return (
     <div className="App">
+      <div>Hello</div>
       <DisplayBook all_books = {all_books} />
     </div>
   );
