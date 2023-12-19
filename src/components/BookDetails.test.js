@@ -5,11 +5,9 @@ import BookDetails from './BookDetails';
 
 describe('BookDetails Component', () => {
   test('renders book details correctly', () => {
-    // Render the component with the mock book data
     render(<BookDetails />);
 
-    // Check if the component renders the book details
-    expect(screen.getByAltText('')).toBeInTheDocument(); // Replace '' with alt text for the image if available
+    expect(screen.getByAltText('')).toBeInTheDocument(); 
     expect(screen.getByText(/GOLANG/i)).toBeInTheDocument();
     expect(screen.getByText(/BY - Herbert/i)).toBeInTheDocument();
     expect(screen.getByText('4.2★')).toBeInTheDocument();

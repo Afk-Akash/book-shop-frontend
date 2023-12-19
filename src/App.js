@@ -19,6 +19,7 @@ function App() {
             }
           />
           <Route path="/" element={<Navigate replace to="/home" />} />
+          <Route path="/booklist" element={<BookList all_books={all_books} />} />
         </Routes>
     </div>
   );

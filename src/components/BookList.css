@@ -1,32 +1,45 @@
+/* .main-class {
+  display: inline-block;
+  flex-direction: row;
+  justify-content: space-between;
+}
+ */
+
+
+ /* App.css (or your preferred CSS file) */
+
+/* Container for the dropdown and book list */
 .main-class {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Style for the dropdown */
+.drop-down-menu {
+  margin-bottom: 20px;
+}
+
+#sortDropdown {
+  padding: 10px;
+  font-size: 16px;
+}
+
+/* Style for the book list */
+.book-list {
+  list-style: none;
+  padding: 0;
+}
+
+/* Style for each book item */
+.book {
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  padding: 10px;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.main-div {
-  width: 23%;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  padding: 10px;
-}
-
-.desc-div {
-  margin-bottom: 5px;
-  font-weight: 300;
-  /* margin-left: 70px; */
-}
-
-.name-div,
-.author-div,
-.price-div {
-  font-weight: 500;
-  margin-bottom: 5px;
-  /* margin-left: 70px; */
-  /* text-align: left; */
-}
-
-.image-div {
-  max-width: 100%;
-  height: auto;
+/* Add hover effect for book items */
+.book:hover {
+  cursor: pointer;
 }
