@@ -23,7 +23,7 @@ const Book = ({
 
   return (
     <div>
-      <img className="image-div" src={image} alt="book image was the" />
+      <img className="image-div" src={image} alt="showing book" />
       <h3>{name}</h3>
       <p>Author: {author}</p>
       <p>Price: ${price}</p>
