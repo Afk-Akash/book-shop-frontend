@@ -4,12 +4,17 @@ import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Header from "../src/components/Header";
 import BookList from "./components/BookList";
+<<<<<<< Updated upstream
 import SignUpPage from "./Component/SignUpPage";
 import LoginPage from "./Component/LoginPage";
+=======
+import BookDetails from "./components/BookDetails";
+>>>>>>> Stashed changes
 
 function App() {
   return (
     <div className="App">
+<<<<<<< Updated upstream
       <Routes>
         <Route
           path="/home"
@@ -27,6 +32,22 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
 
       </Routes>
+=======
+        <Routes>
+          <Route
+            path="/home"
+            element={
+              <>
+                <Header />
+                <BookList all_books={all_books} />
+              </>
+            }
+          />
+          <Route path="/" element={<Navigate replace to="/home" />} />
+          {/* <Route path="/booklist" element={<BookList />} /> */}
+          <Route path="/bookDetail" element={<BookDetails />} />
+        </Routes>
+>>>>>>> Stashed changes
     </div>
   );
 }
