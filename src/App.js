@@ -1,7 +1,7 @@
 import "./App.css";
 import all_books from "./Data/all_books";
 import React from "react";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
 import Header from "../src/components/Header";
 import BookList from "./components/BookList";
 
@@ -13,7 +13,7 @@ function App() {
           {/* <Route path="/" element={<Header />} /> */}
           {/* <Redirect from="/" to="/home" /> */}
           <Route
-            path="/"
+            path="/home"
             element={
               <>
                 <Header />
@@ -21,6 +21,7 @@ function App() {
               </>
             }
           />
+          <Route path="/" element={<Navigate replace to="/home" />} />
         </Routes>
       </BrowserRouter>
     </div>

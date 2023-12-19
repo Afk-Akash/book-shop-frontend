@@ -11,13 +11,13 @@ const Book = ({
 }) => {
   const handleBuyNow = () => {
     if (availability > 0) {
-      onBuyNow({ name, author, price });
+      // onBuyNow({ name, author, price });
     }
   };
 
   const handleAddToCart = () => {
     if (availability > 0) {
-      onAddToCart({ name, author, price });
+      // onAddToCart({ name, author, price });
     }
   };
 
