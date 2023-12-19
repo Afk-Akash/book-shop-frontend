@@ -1,4 +1,5 @@
 import React from "react";
+import "./Book.css";
 
 const Book = ({
   image,
@@ -6,8 +7,8 @@ const Book = ({
   author,
   price,
   availability,
-  onBuyNow,
-  onAddToCart,
+  // onBuyNow,
+  // onAddToCart,
 }) => {
   const handleBuyNow = () => {
     if (availability > 0) {
@@ -22,15 +23,24 @@ const Book = ({
   };
 
   return (
-    <div>
+    <div className="main-class">
       <img className="image-div" src={image} alt="showing book" />
-      <h3>{name}</h3>
-      <p>Author: {author}</p>
-      <p>Price: ${price}</p>
-      <button onClick={handleBuyNow} disabled={availability === 0}>
+
+      <h3 className="name-h3">{name}</h3>
+      <p className="author-p">By- {author}</p>
+      <p className="price-p">Price: {price}</p>
+      <button
+        className="buynow-button"
+        onClick={handleBuyNow}
+        disabled={availability === 0}
+      >
         Buy Now
       </button>
-      <button onClick={handleAddToCart} disabled={availability === 0}>
+      <button
+        className="addtocart-button"
+        onClick={handleAddToCart}
+        disabled={availability === 0}
+      >
         Add to Cart
       </button>
     </div>

@@ -7,31 +7,25 @@ const BookList = ({ all_books }) => {
 
   return (
     <div className="main-class">
-        <div className="drop-down-menu">
+      <div className="drop-down-menu">
         <label htmlFor="sortDropdown">Sort By:</label>
-        <select id="sortDropdown" value={{sortOption}} onChange={{}}>
+        <select id="sortDropdown" value={{ sortOption }} onChange={{}}>
           <option value="price-asc">Price Ascending</option>
           <option value="price-desc">Price Descending</option>
           <option value="rating-asc">Rating Ascending</option>
           <option value="rating-desc">Rating Descending</option>
         </select>
-        </div>
+      </div>
       <div className="book-list">
-
-      {all_books.length === 0 ? (
-        <p>No books available</p>
-      ) 
-      : 
-      (
-        all_books.map((item, index) => (
-          <div className="book">
-            <Book 
-            key={item.id}
-            {...item}
-          />  
-          </div>
-        ))
-      )}
+        {all_books.length === 0 ? (
+          <p>No books available</p>
+        ) : (
+          all_books.map((item, index) => (
+            <div className="book">
+              <Book className="books" key={item.id} {...item} />
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

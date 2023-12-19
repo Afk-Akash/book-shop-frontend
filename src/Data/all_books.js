@@ -8,7 +8,7 @@ var all_books = [
     desc: "Best book of JAVA till now",
     price: "$1",
     image: img1,
-    availability: 10,
+    availability: 0,
   },
   {
     id: 2,

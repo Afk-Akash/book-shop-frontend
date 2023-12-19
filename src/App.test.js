@@ -1,16 +1,19 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 
-describe("App Component", () => {
-  test("renders Header on the home page", () => {
+describe("App component", () => {
+  it("renders App component with routes", () => {
     render(
-      <BrowserRouter>
+      <Router>
         <App />
-      </BrowserRouter>
+      </Router>
     );
 
+    // expect(screen.getByText(/sign up/i)).toBeInTheDocument();
     expect(screen.getByText("Header")).toBeInTheDocument();
   });
+
+  // Add more test cases as needed for different routes and functionality
 });

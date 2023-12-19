@@ -1,45 +1,25 @@
-/* .main-class {
-  display: inline-block;
-  flex-direction: row;
-  justify-content: space-between;
-}
- */
+/* BookList.css */
 
-
- /* App.css (or your preferred CSS file) */
-
-/* Container for the dropdown and book list */
 .main-class {
-  max-width: 600px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  flex-wrap: wrap;
 }
 
-/* Style for the dropdown */
 .drop-down-menu {
   margin-bottom: 20px;
 }
 
-#sortDropdown {
-  padding: 10px;
-  font-size: 16px;
-}
-
-/* Style for the book list */
-.book-list {
-  list-style: none;
-  padding: 0;
-}
-
-/* Style for each book item */
 .book {
   border: 1px solid #ddd;
-  margin-bottom: 10px;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
+  margin: 10px;
 }
 
-/* Add hover effect for book items */
-.book:hover {
-  cursor: pointer;
+.books {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 100px;
+  border: 1px solid #ddd;
 }
