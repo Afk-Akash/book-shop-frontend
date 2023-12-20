@@ -17,7 +17,7 @@ var all_books = [
     author: "Herbert",
     price: "$1",
     image: img1,
-    availability: 10,
+    availability: 3,
   },
   {
     id: 3,

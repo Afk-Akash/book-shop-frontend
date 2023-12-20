@@ -12,7 +12,7 @@ describe("App component", () => {
     );
 
     // expect(screen.getByText(/sign up/i)).toBeInTheDocument();
-    expect(screen.getByText("Header")).toBeInTheDocument();
+    expect(screen.getByText("Book Shop")).toBeInTheDocument();
   });
 
   // Add more test cases as needed for different routes and functionality

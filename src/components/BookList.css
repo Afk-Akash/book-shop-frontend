@@ -12,6 +12,10 @@ label {
   margin-left: 10px;
 }
 
+p {
+  padding-left: 20px;
+}
+
 .book-list {
   display: flex;
   flex-wrap: wrap;
