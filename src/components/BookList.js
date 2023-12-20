@@ -6,7 +6,7 @@ const BookList = ({ all_books }) => {
   const sortOption = "";
 
   return (
-    <div className="main-class">
+    <div className="book-list-main-class">
       <div className="drop-down-menu">
         <label htmlFor="sortDropdown">Sort By:</label>
         <select id="sortDropdown" value={{ sortOption }} onChange={{}}>
@@ -22,7 +22,7 @@ const BookList = ({ all_books }) => {
         ) : (
           all_books.map((item, index) => (
             <div className="book">
-              <Book className="books" key={item.id} {...item} />
+              <Book key={item.id} {...item} />
             </div>
           ))
         )}

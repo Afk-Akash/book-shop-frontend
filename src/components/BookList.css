@@ -1,25 +1,27 @@
-/* BookList.css */
-
-.main-class {
+.book-list-main-class {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  flex-wrap: wrap;
+  align-items: flex-start;
 }
 
 .drop-down-menu {
   margin-bottom: 20px;
 }
 
+label {
+  margin-left: 10px;
+}
+
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: baseline;
+  align-items: center;
+}
+
 .book {
   border: 1px solid #ddd;
   margin: 10px;
-}
-
-.books {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin: 100px;
-  border: 1px solid #ddd;
+  width: 23%;
+  box-sizing: border-box;
 }

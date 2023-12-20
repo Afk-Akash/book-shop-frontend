@@ -23,7 +23,7 @@ const Book = ({
   };
 
   return (
-    <div className="main-class">
+    <div className="book-main-class">
       <img className="image-div" src={image} alt="showing book" />
 
       <h3 className="name-h3">{name}</h3>
