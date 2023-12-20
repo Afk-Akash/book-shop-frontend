@@ -31,7 +31,8 @@ const styles = {
         cursor: 'pointer',
         borderRadius: '4px',
         marginBottom: '15px',
-        alignItems: 'left'
+        alignItems: 'left',
+        fontSize: '16px',
     },
     submitButton: {
         backgroundColor: '#28a745',
