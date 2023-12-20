@@ -7,7 +7,7 @@ const SignUpForm = () => {
     const [formData, setFormData] = useState({
         name: '',
         username: '',
-        mobileNumber: '',
+        mobilenumber: '',
         email: '',
         password: '',
         confirmPassword: '',
@@ -17,16 +17,24 @@ const SignUpForm = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+
+
+        if (formData.error) {
+            setFormData({ ...formData, error: '' });
+        }
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         if (
-            !validatePassword(formData.password) ||
-            !validatePhoneNumber(formData.mobileNumber)
+            !validatePhoneNumber(formData.mobilenumber)
         ) {
-            setFormData({ ...formData, error: 'Invalid data. Please check the fields.' });
+            setFormData({ ...formData, error: 'please enter a valid phone number' });
+            return;
+        } else if (!validatePassword(formData.password)) {
+
+            setFormData({ ...formData, error: 'Invalid password' });
             return;
         }
         // If validations pass, perform signup action
@@ -35,7 +43,7 @@ const SignUpForm = () => {
         setFormData({
             name: '',
             username: '',
-            mobileNumber: '',
+            mobilenumber: '',
             email: '',
             password: '',
 
@@ -58,7 +66,8 @@ const SignUpForm = () => {
     };
 
     const validatePhoneNumber = (phoneNumber) => {
-        return phoneNumber.length === 10 && !isNaN(phoneNumber);
+        const phoneRegex = /^\d{10}$/;
+        return phoneRegex.test(phoneNumber);
 
     };
 

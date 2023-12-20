@@ -77,7 +77,7 @@ describe("SignUpForm component", () => {
     fireEvent.click(submitButton);
 
     const errorMessage = screen.getByText(
-      "Invalid data. Please check the fields."
+      "please enter a valid phone number"
     );
 
     expect(errorMessage).toBeInTheDocument();
