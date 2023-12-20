@@ -17,7 +17,7 @@ function App() {
           element={
             <>
               <Header />
-              <BookList all_books={all_books} />
+              <BookList/>
             </>
           }
         />

@@ -1,28 +1,29 @@
-import React, { useEffect, useState } from "react";
-import "./BookDetails.css";
-import { useParams } from "react-router-dom";
-import all_books from "../Data/all_books";
-// import {  Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import './BookDetails.css'
+import { useParams} from "react-router-dom";
 
 const BookDetails = () => {
   const { id } = useParams();
   const [book, setBook] = useState({});
 
   useEffect(() => {
-    const temp = all_books.filter((book) => book.id === parseInt(id));
-    setBook(temp[0]);
-  }, [id]);
+    const url = `http://10.132.124.241:8080/book/${id}`;
+    fetch(url)
+    .then(res => res.json())
+    .then(res => setBook(res.books))
+    .catch(err => console.log('@@@err is',err));
+  },[id]);
 
   return (
-    <div className="main">
-      <div className="main-container">
-        <div className="main-image">
-          <img src={book.image} alt="" />
+    <div className='main'>
+      <div className='main-container'>
+        <div className='main-image' >
+          <img src={book.largeImageUrl} alt='' />
         </div>
 
-        <div className="right-side-container">
-          <div className="book-name">
-            <h2>{book.name}</h2>
+        <div className='right-side-container'>
+          <div testId="bookName" className='book-name'>
+            <h2>{book.bookName}</h2>
           </div>
 
           <div className="book-author">
@@ -32,9 +33,9 @@ const BookDetails = () => {
           <div className="book-rating">
             <h4>4.2★</h4>
           </div>
-
-          <div className="book-description">
-            <h3>{book.desc}</h3>
+          
+          <div className='book-description'>
+            <h3>{book.description}</h3>
           </div>
 
           <div className="book-price">{book.price}</div>

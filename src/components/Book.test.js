@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 describe("Book component", () => {
   const mockBook = {
     image: "book-image.jpg",
-    name: "Sample Book",
+    bookName: "Sample Book",
     author: "John Doe",
     price: "$19.99",
     availability: 5,
@@ -48,7 +48,7 @@ describe("Book component", () => {
   //   });
 
   it("disables buttons when availability is 0", () => {
-    const { getByText } = render(<Router><Book {...mockBook} availability={0} /></Router>);
+    const { getByText } = render(<Router><Book {...mockBook} numberOfAvailableBooks={0} /></Router>);
 
     expect(getByText("Buy Now")).toBeDisabled();
     expect(getByText("Add to Cart")).toBeDisabled();

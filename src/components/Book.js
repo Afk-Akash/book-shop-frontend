@@ -3,12 +3,12 @@ import "./Book.css";
 import {Link} from 'react-router-dom';
 
 const Book = ({
-  id,
-  image,
-  name,
+  isbn: id,
+  largeImageUrl: image,
+  bookName:name,
   author,
   price,
-  availability,
+  numberOfAvailableBooks: availability,
   // onBuyNow,
   // onAddToCart,
 }) => {

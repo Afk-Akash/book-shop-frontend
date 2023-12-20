@@ -1,10 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect,useState,useContext } from "react";
 import "./BookList.css";
 import Book from "./Book";
+import { Context } from "../context/Context";
 
-const BookList = ({ all_books }) => {
+const BookList = () => {
+
+  const [bookList,setBookList] = useState([]);
+  const { fetchBooks, books } = useContext(Context);
   const [sortOption, setSortOption] = useState("rating-asc");
-  const [bookList, setBookList] = useState([...all_books]);
+
+  // console.log('@@@fetchBooks is',fetchBooks,books);
+
+  useEffect(() => {
+    fetch("http://10.132.124.241:8080/books")
+      .then((res) => res.json())
+      .then(res => setBookList(res.books))
+      .catch((err) => console.log("@@@err is", err));
+  }, []);
 
   const sortingHandler = (event) => {
     setSortOption(event.target.value);
@@ -35,12 +47,12 @@ const BookList = ({ all_books }) => {
         </select>
       </div>
       <div className="book-list">
-        {all_books.length === 0 ? (
+        {bookList.length === 0 ? (
           <p>No books available</p>
         ) : (
           bookList.map((item, index) => (
             <div className="book">
-              <Book className="books" key={index} {...item} />
+              <Book className="books" bookList key={index} {...item} />
             </div>
           ))
         )}
