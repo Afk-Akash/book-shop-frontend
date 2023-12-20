@@ -21,7 +21,7 @@ const SignUpForm = () => {
         try {
             const response = await fetch(`http://localhost:8080/users/${username}`);
             const data = await response.json();
-            setIsUsernameAvailable(data.isAvailable);
+            setIsUsernameAvailable(!data);
         } catch (error) {
             console.error('Error checking username:', error);
         }
@@ -31,7 +31,7 @@ const SignUpForm = () => {
         try {
             const response = await fetch(`http://localhost:8080/users/${email}`);
             const data = await response.json();
-            setIsEmailAvailable(data.isAvailable);
+            setIsEmailAvailable(!data);
         } catch (error) {
             console.error('Error checking email:', error);
         }
@@ -41,6 +41,11 @@ const SignUpForm = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value, error: '' });
+        if(name === 'username'){
+            setIsUsernameAvailable(true);
+        }
+        if(name==='email')
+        setIsEmailAvailable(true)
 
     };
 
