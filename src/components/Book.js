@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Book.css";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Book = ({
   isbn: id,
@@ -12,6 +12,8 @@ const Book = ({
   // onBuyNow,
   // onAddToCart,
 }) => {
+  const [isBookAdded, setIsBookAdded] = useState(false);
+
   const handleBuyNow = () => {
     if (availability > 0) {
       // onBuyNow({ name, author, price });
@@ -21,6 +23,7 @@ const Book = ({
   const handleAddToCart = () => {
     if (availability > 0) {
       // onAddToCart({ name, author, price });
+      setIsBookAdded(true);
     }
   };
 
@@ -31,6 +34,9 @@ const Book = ({
       <h3 className="name-h3">{name}</h3>
       <p className="author-p">By- {author}</p>
       <p className="price-p">Price: {price}</p>
+      {isBookAdded && (
+        <p className="added-message">Book is added to the cart</p>
+      )}
       <button
         className="buynow-button"
         onClick={handleBuyNow}
@@ -45,10 +51,8 @@ const Book = ({
       >
         Add to Cart
       </button>
-      <button
-        className="bookdetails-button"
-      >
-        <Link className="btn btn-outline-primary" to={"/book/details/"+ id}>
+      <button className="bookdetails-button">
+        <Link className="btn btn-outline-primary" to={"/book/details/" + id}>
           Book Details
         </Link>
       </button>

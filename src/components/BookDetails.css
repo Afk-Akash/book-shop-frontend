@@ -10,7 +10,8 @@
   background-color: #fff;
   height: 100%;
   width: 100%;
-
+  justify-content: space-between;
+  align-items: center;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -30,6 +31,10 @@ label {
   margin-left: 50px;
 } */
 
+.added-message {
+  padding-left: 8px;
+  text-align: left;
+}
 .no-stock,
 .few-stocks {
   padding-left: 12px;
@@ -82,8 +87,30 @@ label {
   margin-top: 20px;
 }
 
-.buttons {
-  margin-top: 20px;
+.quantity-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  padding-left: 10px;
+}
+
+.quantity {
+  padding: 5px 5px 5px 5px;
+  margin: 0 5px; /* Adjust the margin for the quantity display */
+  font-size: 1.2em; /* Adjust the font size as needed */
+  line-height: 30px; /* Align the text vertically in the middle */
+}
+
+.minus,
+.plus {
+  font-size: 1.5em; /* Adjust font size for buttons */
+  width: 30px; /* Adjust the width as needed */
+  height: 30px; /* Adjust the height as needed */
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background-color: #bbb;
 }
 
 .btn {
@@ -99,6 +126,9 @@ label {
   cursor: pointer;
   margin-right: 10px;
   margin-top: 20px;
+
+  justify-content: center;
+  align-items: center;
 }
 
 button:hover {
