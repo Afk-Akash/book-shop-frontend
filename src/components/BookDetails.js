@@ -14,6 +14,10 @@ const BookDetails = () => {
     .catch(err => console.log('@@@err is',err));
   },[id]);
 
+  useEffect(() => {
+    console.log("@@@ price type is " , typeof book.price)
+  }, [book])
+
   return (
     <div className='main'>
       <div className='main-container'>
@@ -40,18 +44,18 @@ const BookDetails = () => {
 
           <div className="book-price">{book.price}</div>
 
-          {book.availability === 0 ? (
+          {book.numberOfAvailableBooks === 0 ? (
             <p className="no-stock">Inventory Out of Stock</p>
-          ) : book.availability < 5 ? (
-            <p className="few-stocks">Only {book.availability} books left</p>
+          ) : book.numberOfAvailableBooks < 5 ? (
+            <p className="few-stocks">Only {book.numberOfAvailableBooks} books left</p>
           ) : (
             <div className="book-availability">
-              Total Available Books - {book.availability}
+              Total Available Books - {book.numberOfAvailableBooks}
             </div>
           )}
 
-          <button disabled={book.availability === 0}>Add To Cart</button>
-          <button disabled={book.availability === 0}>Instant Buy</button>
+          <button className="btn" disabled={book.numberOfAvailableBooks === 0}>Add To Cart</button>
+          <button className="btn" disabled={book.numberOfAvailableBooks === 0}>Instant Buy</button>
         </div>
       </div>
     </div>

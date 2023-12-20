@@ -4,6 +4,12 @@
   align-items: flex-start;
 }
 
+.search-and-sort{
+  display: flex;
+  justify-content: space-around;
+}
+
+
 .drop-down-menu {
   margin-bottom: 20px;
 }

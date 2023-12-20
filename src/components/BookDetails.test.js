@@ -25,7 +25,7 @@ describe('BookDetails Component', () => {
       rating: 4.2,
       description: 'This is a sample book description.',
       price: '$19.99',
-      availability: 10,
+      numberOfAvailableBooks: 10,
       largeImageUrl: 'sample-image.jpg',
     };
 
@@ -50,19 +50,9 @@ await waitFor(() => {
   expect(screen.getByText('4.2★')).toBeInTheDocument();
   expect(screen.getByText(mockBook.description)).toBeInTheDocument();
   expect(screen.getByText(mockBook.price)).toBeInTheDocument();
-  expect(screen.getByText(`Total Available Books - ${mockBook.availability}`)).toBeInTheDocument();
+  expect(screen.getByText(`Total Available Books - ${mockBook.numberOfAvailableBooks}`)).toBeInTheDocument();
 });
 
-    // expect(screen.getByTestId('bookName')).not.toBeNull();
 
-    // expect(screen.getByAltText('')).toBeInTheDocument(); 
-    // expect(screen.getByText(/GOLANG/i)).toBeInTheDocument();
-    // expect(screen.getByText(/BY - Herbert/i)).toBeInTheDocument();
-    // expect(screen.getByText('4.2★')).toBeInTheDocument();
-    // expect(screen.getByText(/Best book of JAVA till now/i)).toBeInTheDocument();
-    // expect(screen.getByText('$1')).toBeInTheDocument();
-    // expect(screen.getByText('Total Available Books - 10')).toBeInTheDocument();
-    // expect(screen.getByText('Add To Cart')).toBeInTheDocument();
-    // expect(screen.getByText('Instant Buy')).toBeInTheDocument();
   });
 });
