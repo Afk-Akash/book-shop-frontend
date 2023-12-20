@@ -1,7 +1,9 @@
 import React from "react";
 import "./Book.css";
+import {Link} from 'react-router-dom';
 
 const Book = ({
+  id,
   image,
   name,
   author,
@@ -42,6 +44,13 @@ const Book = ({
         disabled={availability === 0}
       >
         Add to Cart
+      </button>
+      <button
+        className="bookdetails-button"
+      >
+        <Link className="btn btn-outline-primary" to={"/book/details/"+ id}>
+          Book Details
+        </Link>
       </button>
     </div>
   );

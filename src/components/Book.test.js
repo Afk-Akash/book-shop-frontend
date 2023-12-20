@@ -1,6 +1,7 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import Book from "./Book";
+import { BrowserRouter as Router } from 'react-router-dom';
 
 describe("Book component", () => {
   const mockBook = {
@@ -12,7 +13,11 @@ describe("Book component", () => {
   };
 
   it("renders book details correctly", () => {
-    const { getByAltText, getByText } = render(<Book {...mockBook} />);
+    const { getByAltText, getByText } = render(
+      <Router>
+        <Book {...mockBook} />
+      </Router>
+    );
 
     expect(getByAltText("showing book")).toBeInTheDocument();
     expect(getByText("Sample Book")).toBeInTheDocument();
@@ -43,7 +48,7 @@ describe("Book component", () => {
   //   });
 
   it("disables buttons when availability is 0", () => {
-    const { getByText } = render(<Book {...mockBook} availability={0} />);
+    const { getByText } = render(<Router><Book {...mockBook} availability={0} /></Router>);
 
     expect(getByText("Buy Now")).toBeDisabled();
     expect(getByText("Add to Cart")).toBeDisabled();

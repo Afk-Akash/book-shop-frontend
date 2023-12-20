@@ -6,6 +6,7 @@ import Header from "../src/components/Header";
 import BookList from "./components/BookList";
 import SignUpPage from "./Component/SignUpPage";
 import LoginPage from "./Component/LoginPage";
+import BookDetails from './components/BookDetails';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
 
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/book/details/:id" element={<BookDetails />} />
       </Routes>
     </div>
   );

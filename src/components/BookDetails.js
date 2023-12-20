@@ -1,29 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './BookDetails.css'
 import img1 from '../Data/9789353162344.png'
-// import {  Link } from "react-router-dom";
-
-
-const book = {
-    id:4,
-    name:"GOLANG",
-    desc:"Best book of JAVA till now, Best book of JAVA till now, Best book of JAVA till now, Best book of JAVA till now",
-    author:"Herbert",
-    price:"$1",
-    image:img1,
-    availability: 10,
-}
+import { useParams} from "react-router-dom";
+import all_books from "../Data/all_books";
 
 const BookDetails = () => {
+  const { id } = useParams();
+  const [book,setBook] = useState({});
+
+  useEffect(()=>{
+    const temp = all_books.filter(book => book.id === parseInt(id));
+    setBook(temp[0]);
+  },[id]);
+
   return (
     <div className='main'>
       <div className='main-container'>
         <div className='main-image' >
-          <img src={book.image} alt='' />
+          <img src={img1} alt='' />
         </div>
 
         <div className='right-side-container'>
-          <div className='book-name'>
+          <div testId="bookName" className='book-name'>
             <h2>{book.name}</h2>
           </div>
 

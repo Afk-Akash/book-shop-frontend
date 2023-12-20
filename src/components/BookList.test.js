@@ -2,6 +2,20 @@ import React from "react";
 import { render } from "@testing-library/react";
 import BookList from "./BookList";
 
+jest.mock('./Book', () => {
+  return jest.fn(({ name, author, price, availability }) => (
+    <div data-testid="book">
+      <h3>{name}</h3>
+      <p>By- {author}</p>
+      <p>Price: {price}</p>
+      <p>Availability: {availability}</p>
+      <button>Buy Now</button>
+      <button>Add to Cart</button>
+      <button>Book Details</button>
+    </div>
+  ));
+});
+
 describe("BookList component", () => {
   const mockBooks = [
     {
@@ -19,6 +33,7 @@ describe("BookList component", () => {
       availability: 3,
     },
   ];
+
 
   it("renders book list correctly", () => {
     const { getByText, getByLabelText } = render(

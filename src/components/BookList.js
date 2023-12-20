@@ -22,7 +22,7 @@ const BookList = ({ all_books }) => {
         ) : (
           all_books.map((item, index) => (
             <div className="book">
-              <Book key={item.id} {...item} />
+              <Book className="books" key={index} {...item} />
             </div>
           ))
         )}
