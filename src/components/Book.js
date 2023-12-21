@@ -54,11 +54,13 @@ const Book = ({
       >
         Add to Cart
       </button>
-      <button className="bookdetails-button">
-        <Link className="btn btn-outline-primary" to={"/book/details/" + id}>
-          Book Details
-        </Link>
-      </button>
+
+
+      <Link className="btnn" to={"/book/details/" + id} >
+          <button className="bookdetails-button">
+              Book Details
+          </button>
+      </Link>
     </div>
   );
 };
