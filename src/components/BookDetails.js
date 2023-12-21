@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./BookDetails.css";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const BookDetails = () => {
   const { bookId } = useParams();
@@ -15,8 +16,6 @@ const BookDetails = () => {
       .then((res) => setBook(res))
       .catch((err) => console.log("@@@err is", err));
   }, [bookId]);
-
- 
 
   const handleIncrement = () => {
     if (quantity < book.numberOfAvailableBooks) {
@@ -37,8 +36,12 @@ const BookDetails = () => {
     setIsBookAdded(true);
   };
 
+  const handleInstantBuy = () => {
+    // Add your logic to perform the actual "Instant Buy" action, e.g., making a backend API call
+  };
+
   let priceOfTheBook = book.price;
-  if(typeof priceOfTheBook == 'number'){
+  if (typeof priceOfTheBook == "number") {
     priceOfTheBook = priceOfTheBook.toFixed(2);
   }
   // console.log(priceOfTheBook.toFixed(2))
@@ -102,9 +105,15 @@ const BookDetails = () => {
           >
             Add To Cart
           </button>
-          <button className="btn" disabled={book.numberOfAvailableBooks === 0}>
-            Instant Buy
-          </button>
+          <Link to="/delivery" state={{ quantity, bookid: bookId }}>
+            <button
+              className="btn"
+              disabled={book.numberOfAvailableBooks === 0}
+              onClick={handleInstantBuy}
+            >
+              Instant Buy
+            </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Book = ({
   bookId: id,
   largeImageUrl: image,
-  bookName:name,
+  bookName: name,
   author,
   price,
   numberOfAvailableBooks: availability,
@@ -22,7 +22,7 @@ const Book = ({
       setIsBookAdded(true);
     }
   };
-  if(typeof price == 'number'){
+  if (typeof price == "number") {
     price = price.toFixed(2);
   }
 
@@ -36,13 +36,20 @@ const Book = ({
       {isBookAdded && (
         <p className="added-message">Book is added to the cart</p>
       )}
-      <button
-        className="buynow-button"
-        onClick={handleBuyNow}
-        disabled={availability === 0}
+
+      <Link
+        className="buynow-link"
+        to="/delivery"
+        state={{ quantity: 1, bookid: id }}
       >
-        Buy Now
-      </button>
+        <button
+          className="buynow-button"
+          onClick={handleBuyNow}
+          disabled={availability === 0}
+        >
+          Buy Now
+        </button>
+      </Link>
       <button
         className="addtocart-button"
         onClick={handleAddToCart}

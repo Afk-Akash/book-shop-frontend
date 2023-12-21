@@ -11,9 +11,9 @@
 
 .image-div {
   width: 90%;
-  aspect-ratio: .8;
+  aspect-ratio: 0.8;
   border-radius: 10px;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .name-h3 {
@@ -55,10 +55,13 @@
   margin-top: 5px;
 }
 
+.buynow-link {
+  margin-top: 5px;
+  width: 300px;
+  height: 50%;
+}
 
-
-
-.bookdetails-button{
+.bookdetails-button {
   /* border: .5px solid rgb(0, 0, 0); */
   border: none;
   border-radius: 10px;
@@ -72,4 +75,3 @@ button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
-

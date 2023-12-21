@@ -120,7 +120,7 @@ const DeliveryDetailsForm = () => {
         </button>
         {formData.error && <p style={styles.errorText}>{formData.error}</p>}
       </form>
-      <Link to="/ordersummary" />
+      <Link to="/delivery" />
     </div>
   );
 };
