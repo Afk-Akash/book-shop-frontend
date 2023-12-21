@@ -10,7 +10,7 @@
   background-color: #fff;
   height: 100%;
   width: 100%;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -19,17 +19,15 @@
 .main-image img {
   max-width: 100%;
   border-radius: 8px 0 0 8px;
+  margin-left: 50px;
 }
 
 .right-side-container {
   flex-grow: 1;
   padding: 20px;
   text-align: left;
+  margin-left: 100px;
 }
-/* 
-label {
-  margin-left: 50px;
-} */
 
 .added-message {
   padding-left: 8px;
@@ -66,19 +64,13 @@ label {
 }
 
 .book-rating {
-  font-size: inherit;
-  padding-left: 10px;
-  border: 1px solid green;
+  font-size: 1.3em;
+  border: none;
+  margin: 10px;
   background-color: green;
   color: #fff;
   max-width: 8%;
-  max-height: 10%;
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
-  padding-bottom: 10px;
-  border-radius: 10px;
-  padding: 0px;
+  border-radius: 8px;
 }
 
 .book-availability {
@@ -96,16 +88,16 @@ label {
 
 .quantity {
   padding: 5px 5px 5px 5px;
-  margin: 0 5px; /* Adjust the margin for the quantity display */
-  font-size: 1.2em; /* Adjust the font size as needed */
-  line-height: 30px; /* Align the text vertically in the middle */
+  margin: 0 5px; 
+  font-size: 1.2em; 
+  line-height: 30px; 
 }
 
 .minus,
 .plus {
-  font-size: 1.5em; /* Adjust font size for buttons */
-  width: 30px; /* Adjust the width as needed */
-  height: 30px; /* Adjust the height as needed */
+  font-size: 1.5em; 
+  width: 30px; 
+  height: 30px; 
   display: flex;
   text-align: center;
   justify-content: center;
@@ -116,7 +108,7 @@ label {
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  font-size: 3em;
+  font-size: 2em;
   text-align: center;
   text-decoration: none;
   color: #fff;

@@ -9,20 +9,16 @@ const Book = ({
   author,
   price,
   numberOfAvailableBooks: availability,
-  // onBuyNow,
-  // onAddToCart,
 }) => {
   const [isBookAdded, setIsBookAdded] = useState(false);
 
   const handleBuyNow = () => {
     if (availability > 0) {
-      // onBuyNow({ name, author, price });
     }
   };
 
   const handleAddToCart = () => {
     if (availability > 0) {
-      // onAddToCart({ name, author, price });
       setIsBookAdded(true);
     }
   };
