@@ -6,11 +6,10 @@ const SignUpForm = () => {
 
     const [formData, setFormData] = useState({
         name: '',
-        username: '',
-        mobilenumber: '',
+        userName: '',
+        mobileNumber: '',
         email: '',
         password: '',
-        confirmPassword: '',
         error: '',
     });
 
@@ -41,19 +40,19 @@ const SignUpForm = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value, error: '' });
-        if(name === 'username'){
+        if (name === 'userName') {
             setIsUsernameAvailable(true);
         }
-        if(name==='email')
-        setIsEmailAvailable(true)
+        if (name === 'email')
+            setIsEmailAvailable(true)
 
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (
-            !validatePhoneNumber(formData.mobilenumber)
+            !validatePhoneNumber(formData.mobileNumber)
         ) {
             setFormData({ ...formData, error: 'please enter a valid phone number' });
             return;
@@ -62,19 +61,33 @@ const SignUpForm = () => {
             setFormData({ ...formData, error: 'Invalid password' });
             return;
         }
-        // If validations pass, perform signup action
-        console.log('Form submitted:', formData);
-        // Reset form fields after successful signup
+        try {
+            await fetch('http://localhost:8080/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    username: formData.userName,
+                    mobileNumber: formData.mobileNumber,
+                    email: formData.email,
+                    password: formData.password,
+                }),
+            })
+        } catch (error) {
+            console.error('Error checking email:', error);
+        }
+
         setFormData({
             name: '',
-            username: '',
-            mobilenumber: '',
+            userName: '',
+            mobileNumber: '',
             email: '',
             password: '',
-
             error: '',
         });
-        window.location.href = '/login';
+        // window.location.href = '/login';
 
 
 
@@ -111,8 +124,8 @@ const SignUpForm = () => {
                 />
                 <input
                     type="text"
-                    name="username"
-                    value={formData.username}
+                    name="userName"
+                    value={formData.userName}
                     placeholder="username"
                     onChange={(e) => {
                         handleChange(e);
@@ -128,8 +141,8 @@ const SignUpForm = () => {
                 )}
                 <input
                     type="number"
-                    name="mobilenumber"
-                    value={formData.mobilenumber}
+                    name="mobileNumber"
+                    value={formData.mobileNumber}
                     placeholder="mobilenumber"
                     onChange={handleChange}
                     style={styles.inputField}
