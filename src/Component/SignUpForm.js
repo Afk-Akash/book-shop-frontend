@@ -62,32 +62,33 @@ const SignUpForm = () => {
             return;
         }
         try {
-            await fetch('http://localhost:8080/users', {
+            await fetch('http://localhost:8080/user', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                     name: formData.name,
-                    username: formData.userName,
+                    userName: formData.userName,
                     mobileNumber: formData.mobileNumber,
                     email: formData.email,
-                    password: formData.password,
+                    password: '',
                 }),
+                
             })
         } catch (error) {
             console.error('Error checking email:', error);
         }
 
-        setFormData({
-            name: '',
-            userName: '',
-            mobileNumber: '',
-            email: '',
-            password: '',
-            error: '',
-        });
-        // window.location.href = '/login';
+            setFormData({
+                name: '',
+                userName: '',
+                mobileNumber: '',
+                email: '',
+                password: '',
+                error: '',
+            });
+         window.location.href = '/login';
 
 
 
