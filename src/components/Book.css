@@ -43,6 +43,7 @@
   background-color: #3498db;
   color: #fff;
   border: none;
+  font-size: 20px;
   padding: 8px 12px;
   margin-top: 8px;
   cursor: pointer;
@@ -58,11 +59,13 @@
 
 
 .bookdetails-button{
-  border: 1px solid rgb(0, 0, 0);
+  /* border: .5px solid rgb(0, 0, 0); */
+  border: none;
   border-radius: 10px;
-  background-color: #db9034;
-  font-size: 38px;
+  background-color: #dfcdb8;
+  font-size: 30px;
   margin: 20px;
+  padding: 10px;
 }
 
 button:disabled {
