@@ -9,12 +9,17 @@ const BookList = () => {
   // const { fetchBooks, books } = useContext(Context);
   const [sortOption, setSortOption] = useState("rating-asc");
 
+  const [tempBookList , setTempBookList] = useState([]);
+
   // console.log('@@@fetchBooks is',fetchBooks,books);
 
   useEffect(() => {
     fetch("http://10.132.124.241:8080/books")
       .then((res) => res.json())
-      .then(res => setBookList(res.books))
+      .then((res) => {
+        setBookList(res.books);
+        setTempBookList(res.books);
+      })
       .catch((err) => console.log("@@@err is", err));
   }, []);
   const [searchKeyword, setSearchKeyword] = useState("");
@@ -23,12 +28,25 @@ const BookList = () => {
   const searchHandler = (event) => {
     setSearchKeyword(event.target.value)
 
-    let searchedBooks;
+    let searchedBooks, sortedBooks;
     let eventTarget = event.target.value;
 
-    searchedBooks = bookList.filter(item => item.name.toLowerCase().startsWith(eventTarget.toLowerCase()));
+    searchedBooks = bookList.filter((item) => {
+      return item.bookName.toLowerCase().startsWith(eventTarget.toLowerCase()) || item.author.toLowerCase().startsWith(eventTarget.toLowerCase());
+    });
+    console.log("@@@ serched book is " , searchedBooks)
 
-    setBookList(searchedBooks);
+    if (sortOption === 'rating-asc') {
+      sortedBooks = [...searchedBooks].sort((a, b) => a.rating - b.rating);
+    } else if (sortOption === 'rating-desc') {
+      sortedBooks = [...searchedBooks].sort((a, b) => b.rating - a.rating);
+    } else if (sortOption === 'price-asc') {
+      sortedBooks = [...searchedBooks].sort((a, b) => a.price - b.price);
+    } else if (sortOption === 'price-desc') {
+      sortedBooks = [...searchedBooks].sort((a, b) => b.price - a.price);
+    }
+
+    setTempBookList(sortedBooks);
 
   }
 
@@ -37,15 +55,15 @@ const BookList = () => {
     let sortedBooks;
 
     if (event.target.value === 'rating-asc') {
-      sortedBooks = [...bookList].sort((a, b) => a.rating - b.rating);
+      sortedBooks = [...tempBookList].sort((a, b) => a.rating - b.rating);
     } else if (event.target.value === 'rating-desc') {
-      sortedBooks = [...bookList].sort((a, b) => b.rating - a.rating);
+      sortedBooks = [...tempBookList].sort((a, b) => b.rating - a.rating);
     } else if (event.target.value === 'price-asc') {
-      sortedBooks = [...bookList].sort((a, b) => a.price - b.price);
+      sortedBooks = [...tempBookList].sort((a, b) => a.price - b.price);
     } else if (event.target.value === 'price-desc') {
-      sortedBooks = [...bookList].sort((a, b) => b.price - a.price);
+      sortedBooks = [...tempBookList].sort((a, b) => b.price - a.price);
     }
-    setBookList(sortedBooks);
+    setTempBookList(sortedBooks);
   }
 
 
@@ -68,12 +86,12 @@ const BookList = () => {
           </div>
       </div>
       <div className="book-list">
-        {bookList.length === 0 ? (
+        {tempBookList.length === 0 ? (
           <p>No books available</p>
         ) : (
-          bookList.map((item, index) => (
+          tempBookList.map((item, index) => (
             <div className="book">
-              <Book className="books" bookList key={index} {...item} />
+              <Book className="books" key={index} {...item} />
             </div>
           ))
         )}

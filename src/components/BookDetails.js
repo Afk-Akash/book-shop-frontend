@@ -3,22 +3,20 @@ import "./BookDetails.css";
 import { useParams } from "react-router-dom";
 
 const BookDetails = () => {
-  const { id } = useParams();
+  const { bookId } = useParams();
   const [book, setBook] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [isBookAdded, setIsBookAdded] = useState(false);
 
   useEffect(() => {
-    const url = `http://10.132.124.241:8080/book/${id}`;
+    const url = `http://10.132.124.241:8080/books/${bookId}`;
     fetch(url)
       .then((res) => res.json())
-      .then((res) => setBook(res.books))
+      .then((res) => setBook(res))
       .catch((err) => console.log("@@@err is", err));
-  }, [id]);
+  }, [bookId]);
 
-  useEffect(() => {
-    console.log("@@@ price type is ", typeof book.price);
-  }, [book]);
+ 
 
   const handleIncrement = () => {
     if (quantity < book.numberOfAvailableBooks) {
@@ -38,6 +36,12 @@ const BookDetails = () => {
     // Set the state to indicate that the book is added
     setIsBookAdded(true);
   };
+
+  let priceOfTheBook = book.price;
+  if(typeof priceOfTheBook == 'number'){
+    priceOfTheBook = priceOfTheBook.toFixed(2);
+  }
+  // console.log(priceOfTheBook.toFixed(2))
 
   return (
     <div className="main">
@@ -63,7 +67,7 @@ const BookDetails = () => {
             <h3>{book.description}</h3>
           </div>
 
-          <div className="book-price">{book.price}</div>
+          <div className="book-price">{priceOfTheBook}</div>
 
           <div className="quantity-container">
             <button className="minus" onClick={handleDecrement}>

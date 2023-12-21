@@ -3,7 +3,7 @@ import "./Book.css";
 import { Link } from "react-router-dom";
 
 const Book = ({
-  isbn: id,
+  bookId: id,
   largeImageUrl: image,
   bookName:name,
   author,
@@ -26,6 +26,9 @@ const Book = ({
       setIsBookAdded(true);
     }
   };
+  if(typeof price == 'number'){
+    price = price.toFixed(2);
+  }
 
   return (
     <div className="book-main-class">
