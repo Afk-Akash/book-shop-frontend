@@ -4,13 +4,20 @@ import "./Header.css"
 
 const Header = (isLoggedIn) => {
 
-
+console.log('isss',isLoggedIn.isLoggedIn);
   return (
     <div className="main-container">
       <Link to='/home' style={{ textDecoration: 'none' }}>
         <h1>Book Shop</h1>
       </Link>
-      {!isLoggedIn ? (
+      {isLoggedIn.isLoggedIn ? (
+<div>
+<div className="user-info">
+  <span className="user-icon">👤</span>
+</div>
+</div>
+
+):(
         <div className="login-signup">
           <nav>
             <ul>
@@ -22,17 +29,11 @@ const Header = (isLoggedIn) => {
               </li>
             </ul>
           </nav>
-        </div>) : (
-
-        <div className="user-info">
-          <span className="user-icon">👤</span>
-          <span className="username">{'hk'}</span>
-        </div>
-
-      )
+        </div>) 
       }
     </div>
   );
 };
+
 
 export default Header;

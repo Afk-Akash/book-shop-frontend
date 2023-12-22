@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 const Tokens = ({ setAccessToken }) => {
     const [tokens, setTokens] = useState({});
-    console.log("Tokens");
     useEffect(() => {
         const url = new URL(window.location.href);
         const code = url.searchParams.get("code");
@@ -38,16 +37,13 @@ const Tokens = ({ setAccessToken }) => {
         }).then((responseJson) => {
             console.log("set");
             setTokens(responseJson);
+            setAccessToken(responseJson);
         });
-        setAccessToken(tokens["access_token"]);
+       
 
     }, []);
 
-    return <div>Tokens:
-        <p>access_token:{tokens["access_token"]}</p>
-        <p>id_token:{tokens["id_token"]}</p>
-        <p>refresh_token:{tokens["refresh_token"]}</p>
-    </div>;
+    return ;
 }
 
 export default Tokens;

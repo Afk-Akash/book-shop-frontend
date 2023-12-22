@@ -1,6 +1,5 @@
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min";
+
 import React, { useState } from "react";
 import all_books from "./Data/all_books";
 import { Route, Routes, Navigate } from "react-router-dom";
@@ -14,34 +13,24 @@ import OrderSummaryPage from "./components/OrderSummary";
 import Tokens from "./components/Tokens";
 
 function App() {
-  const [accessToken, setAccessToken] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+ 
+  const [show, setShow] = useState(false);
   return (
     <div className="App">
-      <Tokens setAccessToken={setAccessToken} />
+   
 
       <Routes>
         <Route
           path="/home"
           element={
             <>
-              <Header isLoggedIn={isLoggedIn} />
-              <BookList />
+            
+              <BookList show={show} setShow={setShow}/>
             </>
           }
         />
         <Route path="/" element={<Navigate replace to="/home" />} />
-        <Route
-          path="/booklist"
-          element={
-            <BookList
-              all_books={all_books}
-              accessToken={accessToken}
-              setIsLoggedIn={setIsLoggedIn}
-            />
-          }
-        />
+        <Route path="/booklist" element={<BookList all_books={all_books} show={show} setShow={setShow} />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/book/details/:bookId" element={<BookDetails />} />

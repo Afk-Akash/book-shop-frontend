@@ -1,53 +1,64 @@
 import React, { useEffect, useState } from "react";
 import "./BookList.css";
 import Book from "./Book";
-
+ 
 import Notification from "../Component/Modal";
 import Header from "./Header";
 import Tokens from "./Tokens";
 // import { Context } from "../context/Context";
+ // const [count,setCount] =useState(1);
+const BookList = (setShow,show) => {
+  const [accessToken, setAccessToken] = useState({});
+  const [isLoggedIn,setIsLoggedIn]=useState(false);
 
-const BookList = (accessToken, setIsLoggedIn) => {
-
+ 
   const [bookList, setBookList] = useState([]);
   // const { fetchBooks, books } = useContext(Context);
   const [sortOption, setSortOption] = useState("rating-asc");
-
+ 
   const [tempBookList, setTempBookList] = useState([]);
   const [showNotification, setShowNotification] = useState(false);
-
+ 
   // console.log('@@@fetchBooks is',fetchBooks,books);
+  console.log('show==',show.show);
 
   useEffect(() => {
-    if (accessToken) {
+    if (accessToken["access_token"] && Object.keys(accessToken["access_token"]).length!==0 && !show.show) {
       const fetchData = async () => {
-
-
+       
+        
+        console.log('accessToken["access_token"]',accessToken["access_token"])
         try {
           const response = await fetch('http://localhost:8080/users', {
             method: 'GET',
             headers: {
-              Authorization: `Bearer ${accessToken}`,
+              Authorization: ` ${accessToken["access_token"]}`,
             },
           });
-
-          if (response) {
-            setIsLoggedIn(true)
+      
+          const data = await response.json();
+          console.log('respobs==',data.userExists);
+       
+          if (data?.userExists) {
+            setIsLoggedIn({ isLoggedIn: true });
+            setShow({show:true});
           } else {
             setShowNotification(true);
-
+ 
           }
-
+ 
         } catch (error) {
           console.log('error')
         }
+     
+        
       };
-
+ 
       fetchData();
     }
   }, [accessToken]);
-
-
+ 
+ 
   useEffect(() => {
     fetch("http://10.132.124.241:8080/books")
       .then((res) => res.json())
@@ -58,19 +69,19 @@ const BookList = (accessToken, setIsLoggedIn) => {
       .catch((err) => console.log("@@@err is", err));
   }, []);
   const [searchKeyword, setSearchKeyword] = useState("");
-
-
+ 
+ 
   const searchHandler = (event) => {
     setSearchKeyword(event.target.value)
-
+ 
     let searchedBooks, sortedBooks;
     let eventTarget = event.target.value;
-
+ 
     searchedBooks = bookList.filter((item) => {
       return item.bookName.toLowerCase().startsWith(eventTarget.toLowerCase()) || item.author.toLowerCase().startsWith(eventTarget.toLowerCase());
     });
     console.log("@@@ serched book is ", searchedBooks)
-
+ 
     if (sortOption === 'rating-asc') {
       sortedBooks = [...searchedBooks].sort((a, b) => a.rating - b.rating);
     } else if (sortOption === 'rating-desc') {
@@ -80,15 +91,15 @@ const BookList = (accessToken, setIsLoggedIn) => {
     } else if (sortOption === 'price-desc') {
       sortedBooks = [...searchedBooks].sort((a, b) => b.price - a.price);
     }
-
+ 
     setTempBookList(sortedBooks);
-
+ 
   }
-
+ 
   const sortingHandler = (event) => {
     setSortOption(event.target.value);
     let sortedBooks;
-
+ 
     if (event.target.value === 'rating-asc') {
       sortedBooks = [...tempBookList].sort((a, b) => a.rating - b.rating);
     } else if (event.target.value === 'rating-desc') {
@@ -100,15 +111,16 @@ const BookList = (accessToken, setIsLoggedIn) => {
     }
     setTempBookList(sortedBooks);
   }
-
-
-
+ 
+ 
+ 
   return (
     <div>
-      <Tokens />
+      <Tokens setAccessToken={setAccessToken}/>
       {showNotification &&
         <Notification message="Username does not exist" />
       }
+      <Header isLoggedIn={isLoggedIn}/>
       <div className="book-list-main-class">
         <div className="search-and-sort">
           <div className="drop-down-menu">
@@ -140,5 +152,5 @@ const BookList = (accessToken, setIsLoggedIn) => {
     </div>
   );
 };
-
+ 
 export default BookList;
