@@ -1,18 +1,52 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./BookList.css";
 import Book from "./Book";
-import { Tokens } from "../App";
+
+import Notification from "../Component/Modal";
+import Header from "./Header";
+import Tokens from "./Tokens";
 // import { Context } from "../context/Context";
 
-const BookList = () => {
+const BookList = (accessToken, setIsLoggedIn) => {
 
-  const [bookList,setBookList] = useState([]);
+  const [bookList, setBookList] = useState([]);
   // const { fetchBooks, books } = useContext(Context);
   const [sortOption, setSortOption] = useState("rating-asc");
 
-  const [tempBookList , setTempBookList] = useState([]);
+  const [tempBookList, setTempBookList] = useState([]);
+  const [showNotification, setShowNotification] = useState(false);
 
   // console.log('@@@fetchBooks is',fetchBooks,books);
+
+  useEffect(() => {
+    if (accessToken) {
+      const fetchData = async () => {
+
+
+        try {
+          const response = await fetch('http://localhost:8080/users', {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          });
+
+          if (response) {
+            setIsLoggedIn(true)
+          } else {
+            setShowNotification(true);
+
+          }
+
+        } catch (error) {
+          console.log('error')
+        }
+      };
+
+      fetchData();
+    }
+  }, [accessToken]);
+
 
   useEffect(() => {
     fetch("http://10.132.124.241:8080/books")
@@ -24,7 +58,7 @@ const BookList = () => {
       .catch((err) => console.log("@@@err is", err));
   }, []);
   const [searchKeyword, setSearchKeyword] = useState("");
-  
+
 
   const searchHandler = (event) => {
     setSearchKeyword(event.target.value)
@@ -35,7 +69,7 @@ const BookList = () => {
     searchedBooks = bookList.filter((item) => {
       return item.bookName.toLowerCase().startsWith(eventTarget.toLowerCase()) || item.author.toLowerCase().startsWith(eventTarget.toLowerCase());
     });
-    console.log("@@@ serched book is " , searchedBooks)
+    console.log("@@@ serched book is ", searchedBooks)
 
     if (sortOption === 'rating-asc') {
       sortedBooks = [...searchedBooks].sort((a, b) => a.rating - b.rating);
@@ -71,9 +105,12 @@ const BookList = () => {
 
   return (
     <div>
-        <Tokens />
-    <div className="book-list-main-class">
-      <div className="search-and-sort">
+      <Tokens />
+      {showNotification &&
+        <Notification message="Username does not exist" />
+      }
+      <div className="book-list-main-class">
+        <div className="search-and-sort">
           <div className="drop-down-menu">
             <label htmlFor="sortDropdown">Sort By:</label>
             <select id="sortDropdown" value={sortOption} onChange={sortingHandler}>
@@ -84,22 +121,22 @@ const BookList = () => {
             </select>
           </div>
           <div className="search-container">
-            <input className="search-input"  value={searchKeyword} onChange={searchHandler} type="text" />
+            <input className="search-input" value={searchKeyword} onChange={searchHandler} type="text" />
             <button className="serach-btn"> Search</button>
           </div>
+        </div>
+        <div className="book-list">
+          {tempBookList.length === 0 ? (
+            <p>No books available</p>
+          ) : (
+            tempBookList.map((item, index) => (
+              <div className="book">
+                <Book className="books" key={index} {...item} />
+              </div>
+            ))
+          )}
+        </div>
       </div>
-      <div className="book-list">
-        {tempBookList.length === 0 ? (
-          <p>No books available</p>
-        ) : (
-          tempBookList.map((item, index) => (
-            <div className="book">
-              <Book className="books" key={index} {...item} />
-            </div>
-          ))
-        )}
-      </div>
-    </div>
     </div>
   );
 };
