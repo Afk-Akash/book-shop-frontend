@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./BookDetails.css";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const BookDetails = () => {
   const { bookId } = useParams();
   const [book, setBook] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [isBookAdded, setIsBookAdded] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const url = `http://10.132.124.241:8080/books/${bookId}`;
@@ -37,7 +38,7 @@ const BookDetails = () => {
   };
 
   const handleInstantBuy = () => {
-    // Add your logic to perform the actual "Instant Buy" action, e.g., making a backend API call
+    navigate("/delivery", { state: { quantity, bookid: bookId } });
   };
 
   let priceOfTheBook = book.price;
@@ -105,15 +106,13 @@ const BookDetails = () => {
           >
             Add To Cart
           </button>
-          <Link to="/delivery" state={{ quantity, bookid: bookId }}>
-            <button
-              className="btn"
-              disabled={book.numberOfAvailableBooks === 0}
-              onClick={handleInstantBuy}
-            >
-              Instant Buy
-            </button>
-          </Link>
+          <button
+            className="btn"
+            disabled={book.numberOfAvailableBooks === 0}
+            onClick={handleInstantBuy}
+          >
+            Instant Buy
+          </button>
         </div>
       </div>
     </div>
