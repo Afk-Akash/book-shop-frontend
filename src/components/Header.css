@@ -1,16 +1,31 @@
+ @import url('https://fonts.cdnfonts.com/css/harry-potter');
+
+
+
+
 .main-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     background-color: #f8f8f8; 
     padding-top: 20px;
     padding-bottom: 20px;
 
   }
+
+  h2 {
+    background-image: linear-gradient(to right, #ff8a00, #da1b60);
+    background-clip: text; 
+    -webkit-background-clip: text;
+  color: transparent;
+  display: inline-block;
+  font-size: 1.7em;
+  }
   
   h1 {
     margin: 0;
-    font-size: 3em;
+    font-size: 1.7em;
+    font-family: 'Roboto', sans-serif;
     font-weight: bold;
     color: #333; 
   }

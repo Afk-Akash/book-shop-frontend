@@ -71,7 +71,7 @@ const BookDetails = () => {
             <h3>{book.description}</h3>
           </div>
 
-          <div className="book-price">{priceOfTheBook}</div>
+          <div className="book-price">₹ {priceOfTheBook}</div>
 
           <div className="quantity-container">
             <button className="minus" onClick={handleDecrement}>

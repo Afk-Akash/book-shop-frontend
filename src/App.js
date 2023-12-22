@@ -1,5 +1,10 @@
 import "./App.css";
+<<<<<<< Updated upstream
 
+=======
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/js/bootstrap.bundle.min";
+>>>>>>> Stashed changes
 import React, { useState } from "react";
 import all_books from "./Data/all_books";
 import { Route, Routes, Navigate } from "react-router-dom";

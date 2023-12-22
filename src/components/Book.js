@@ -32,7 +32,7 @@ const Book = ({
 
       <h3 className="name-h3">{name}</h3>
       <p className="author-p">By- {author}</p>
-      <p className="price-p">Price: {price}</p>
+      <p className="price-p">Price: ₹ {price}</p>
       {isBookAdded && (
         <p className="added-message">Book is added to the cart</p>
       )}

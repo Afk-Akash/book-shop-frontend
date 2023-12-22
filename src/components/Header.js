@@ -8,7 +8,8 @@ console.log('isss',isLoggedIn.isLoggedIn);
   return (
     <div className="main-container">
       <Link to='/home' style={{ textDecoration: 'none' }}>
-        <h1>Book Shop</h1>
+        <h1>Welcome to Book World 📖</h1>
+        <h2>Stories Await, Dive In!</h2>
       </Link>
       {isLoggedIn.isLoggedIn ? (
 <div>
