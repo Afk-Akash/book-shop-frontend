@@ -18,6 +18,7 @@ const BookList = (setShow,show) => {
  
   const [tempBookList, setTempBookList] = useState([]);
   const [showNotification, setShowNotification] = useState(false);
+  const [loginSuccess ,setLoginSuccess] =useState(false);
  
   // console.log('@@@fetchBooks is',fetchBooks,books);
   console.log('show==',show.show);
@@ -42,6 +43,7 @@ const BookList = (setShow,show) => {
           if (data?.userExists) {
             setIsLoggedIn({ isLoggedIn: true });
             setShow({show:true});
+            setLoginSuccess(true);
           } else {
             setShowNotification(true);
  
@@ -118,7 +120,10 @@ const BookList = (setShow,show) => {
     <div>
       <Tokens setAccessToken={setAccessToken}/>
       {showNotification &&
-        <Notification message="Username does not exist" />
+        <Notification message="Username does not exist" color ='red'/>
+      }
+       {loginSuccess &&
+        <Notification message="login successfull" color ='green' />
       }
       <Header isLoggedIn={isLoggedIn}/>
       <div className="book-list-main-class">
