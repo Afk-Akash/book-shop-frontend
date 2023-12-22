@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./DeliveryDetailsForm.style";
-import { Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const DeliveryDetailsForm = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +10,10 @@ const DeliveryDetailsForm = () => {
     alternateMobileNo: "",
     error: "",
   });
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { state } = location;
+  //   console.log(location);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,8 +26,9 @@ const DeliveryDetailsForm = () => {
     if (!validateAlternatePhoneNumber(formData.alternateMobileNo)) {
       setFormData({ ...formData, error: "please enter a valid phone number" });
       return;
-    } else if (
-      !validatePincode(formData.pincode) &&
+    }
+    if (
+      !validatePincodeIndia(formData.pincode) &&
       formData.country === "India"
     ) {
       setFormData({ ...formData, error: "please enter a valid pincode" });
@@ -47,6 +52,15 @@ const DeliveryDetailsForm = () => {
       console.error("Error :", error);
     }
 
+    navigate("/order-summary", {
+      state: {
+        bookid: state?.bookid,
+        quantity: state?.quantity,
+        address: formData?.address,
+        pincode: formData?.pincode,
+      },
+    });
+
     setFormData({
       country: "India",
       address: "",
@@ -63,7 +77,7 @@ const DeliveryDetailsForm = () => {
     return phoneRegex.test(phoneNumber);
   };
 
-  const validatePincode = (pincode) => {
+  const validatePincodeIndia = (pincode) => {
     const pincodeRegex = /^\d{6}$/;
     return pincodeRegex.test(pincode);
   };
@@ -114,13 +128,11 @@ const DeliveryDetailsForm = () => {
           onChange={handleChange}
           style={styles.inputField}
         />
-
         <button type="submit" style={styles.submitButton}>
-          Submit
+          Continue with COD
         </button>
         {formData.error && <p style={styles.errorText}>{formData.error}</p>}
       </form>
-      <Link to="/delivery" />
     </div>
   );
 };

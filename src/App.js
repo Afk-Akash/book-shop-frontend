@@ -10,12 +10,11 @@ import SignUpPage from "./Component/SignUpPage";
 import LoginPage from "./Component/LoginPage";
 import BookDetails from "./components/BookDetails";
 import DeliveryDetailsPage from "./components/DeliveryDetailsPage";
+import OrderSummaryPage from "./components/OrderSummary";
 import Tokens from "./components/Tokens";
 
-
-
 function App() {
-  const [accessToken, setAccessToken] = useState('');
+  const [accessToken, setAccessToken] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
@@ -33,11 +32,21 @@ function App() {
           }
         />
         <Route path="/" element={<Navigate replace to="/home" />} />
-        <Route path="/booklist" element={<BookList all_books={all_books} accessToken={accessToken} setIsLoggedIn={setIsLoggedIn} />} />
+        <Route
+          path="/booklist"
+          element={
+            <BookList
+              all_books={all_books}
+              accessToken={accessToken}
+              setIsLoggedIn={setIsLoggedIn}
+            />
+          }
+        />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/book/details/:bookId" element={<BookDetails />} />
         <Route path="/delivery" element={<DeliveryDetailsPage />} />
+        <Route path="/order-summary" element={<OrderSummaryPage />} />
       </Routes>
     </div>
   );

@@ -1,0 +1,32 @@
+.order-summary-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-summary-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.order-details {
+  margin-bottom: 20px;
+}
+
+.confirm-button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.confirm-button:hover {
+  background-color: #2980b9;
+}
